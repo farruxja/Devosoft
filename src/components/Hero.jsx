@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import TypingAnimation from "./TypingAnimation";
+import { motion } from "framer-motion";
 
 function HeroSection() {
+  const [showTyping, setShowTyping] = useState(false);
+
   return (
     <section
     id='hero'
@@ -15,20 +18,31 @@ function HeroSection() {
       <div className="absolute inset-0 bg-darkBg bg-opacity-70"></div>
       <div className="container mx-auto px-6 relative z-10">
         <div className="flex flex-col md:flex-row items-center">
-          <div className="md:w-1/2 mb-10 md:mb-0">
-          <h1
-  className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-white typing-animation"
-  id="typingText"
->
-  Transforming Ideas Into Digital Reality
-</h1>
-<TypingAnimation textId="typingText" speed={50} />
-            <p className="text-lg text-lightText mb-8 max-w-lg">
+
+          {/* ✅ Chap tomon (matn) */}
+          <motion.div
+            className="md:w-1/2 mb-10 md:mb-0"
+            initial={{ opacity: 0, x: -80 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.9 }}
+            onAnimationComplete={() => setShowTyping(true)}
+          >
+            <h1
+              className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-white"
+              id="typingText"
+            >
+              Transforming Ideas Into Digital Reality
+            </h1>
+            {showTyping && <TypingAnimation textId="typingText" speed={50} />}
+
+            <p className="text-lg text-lightText mb-8 max-w-lg mt-4">
               DevoSoft delivers cutting-edge IT solutions that empower
               businesses to thrive in the digital era. Our expert team turns
               complex challenges into elegant, efficient solutions.
             </p>
-            <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+
+            <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 mt-4">
               <a
                 href="#services"
                 className="gradient-btn text-white px-8 py-3 font-medium text-center !rounded-button whitespace-nowrap"
@@ -42,9 +56,16 @@ function HeroSection() {
                 Contact Us
               </a>
             </div>
-          </div>
+          </motion.div>
 
-          <div className="md:w-1/2 relative">
+          {/* ✅ O‘ng tomon (rasm) */}
+          <motion.div
+            className="md:w-1/2 relative"
+            initial={{ opacity: 0, x: 80 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.9 }}
+          >
             <div className="floating-shape absolute -top-10 -right-10 w-20 h-20 rounded-full bg-primary bg-opacity-20"></div>
             <div
               className="floating-shape absolute bottom-10 left-10 w-16 h-16 rounded-full bg-secondary bg-opacity-20"
@@ -59,7 +80,7 @@ function HeroSection() {
               alt="DevoSoft Team"
               className="rounded-lg shadow-2xl relative z-10"
             />
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

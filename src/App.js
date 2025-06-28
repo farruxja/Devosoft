@@ -12,6 +12,7 @@ import Header from './components/Header';
 import NewsletterSection from './components/NewletterSection';
 
 import ScrollEffects from './components/ScrollEffects';
+import CustomCursor from './components/CustomCursor';
 
 
 
@@ -27,6 +28,7 @@ function App() {
 <NewsletterSection />
    <Footer />
    <CookieConsent />
+   <CustomCursor />
     </div>
   );
 }
